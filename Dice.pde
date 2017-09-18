@@ -1,13 +1,25 @@
 
 void setup()
 {
-	size(500,500);
+	size(520,520);
 	noLoop();
 }
 void draw()
 {
-	Die bob= new Die(30,30);
-	bob.show();
+	background(220,120,91);
+	int sum=0;
+	for(int y=20; y<=320; y=y+60)
+		{
+			for (int x=20; x<= 460; x=x+60)
+			{
+				Die bob= new Die(x,y);
+				bob.show();
+				sum=sum+bob.num;
+			}
+		}
+	textSize(32);
+    text("The sum of all the dice is "+sum ,30,450);
+
 }
 void mousePressed()
 {
@@ -25,7 +37,7 @@ class Die //models one single dice cube
 	}
 	void roll()
 	{
-		fill(0);
+
 		if (Math.random()*6 > 5)//put 0 to 5
 		{
 			num=6;
@@ -53,11 +65,12 @@ class Die //models one single dice cube
 	}
 	void show()
 	{	
-		for(y=0; y<100;y++)
-		{
-			fill(255);
-			rect(myX,myY,50,50,20);
-			if (num==6)
+		int r= (int)(Math.random()*256);
+		int g= (int)(Math.random()*256);
+		int b= (int)(Math.random()*256);
+		fill(r,g,b);
+		rect(myX,myY,50,50,20);
+		if (num==6)
 			{
 				fill(0);
 				ellipse(myX+15,myY+10,8,8);
@@ -79,7 +92,7 @@ class Die //models one single dice cube
 			else if (num==4)
 			{
 				fill(0);
-	            ellipse(myX+14,myY+12,8,8);
+		        ellipse(myX+14,myY+12,8,8);
 				ellipse(myX+14,myY+38,8,8);
 				ellipse(myX+36,myY+12,8,8);
 				ellipse(myX+36,myY+38,8,8);
@@ -87,7 +100,7 @@ class Die //models one single dice cube
 			else if (num==3)
 			{
 				fill(0);
-	 			ellipse(myX+25,myY+25,8,8);
+		 		ellipse(myX+25,myY+25,8,8);
 				ellipse(myX+14,myY+38,8,8);
 				ellipse(myX+36,myY+12,8,8);
 			}
@@ -104,4 +117,3 @@ class Die //models one single dice cube
 			}
 		}	
 	}
-}
